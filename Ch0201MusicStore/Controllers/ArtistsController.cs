@@ -12,6 +12,16 @@ namespace Ch0201MusicStore.Controllers
     {
         private ArtistRepository _repo = new ArtistRepository();
 
+        public ActionResult Details(int id)
+        {
+            Artist artist = _repo.Get(id);
+            if (artist == null)
+            {
+                return HttpNotFound();
+            }
+            return View(artist);
+        }
+
         // GET: Artists
         public ActionResult Index()
         {

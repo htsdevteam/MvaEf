@@ -7,17 +7,13 @@ using System.Web;
 
 namespace Ch0201MusicStore.Models
 {
-    [Table("Artists")]
-    public class Artist
+    public class ArtistDetails
     {
+        [Key]
+        [ForeignKey("Artist")]
         public int ArtistID { get; set; }
 
-        [Required]
-        [StringLength(100, MinimumLength = 2)]
-        public string Name { get; set; }
-
-        public virtual List<Album> Albums { get; set; }
-
-        public virtual ArtistDetails ArtistDetails { get; set; }
+        public string Bio { get; set; }
+        public virtual Artist Artist { get; set; }
     }
 }

@@ -12,7 +12,19 @@ namespace Ch0201MusicStore.Models
         {
             var artist = new Artist { Name = "First Artist" };
             context.Artists.Add(artist);
-            context.Artists.Add(new Artist { Name = "Second Artist" });
+            context.Albums.Add(new Album { Artist = artist, Title = "First Album" });
+            context.Albums.Add(new Album { Artist = artist, Title = "Second Album" });
+
+            context.Albums.Add(new Album
+            {
+                Artist = context.Artists.Add(new Artist { Name = "Third Artist"}),
+                Title = "Third Album"
+            });
+
+            context.Artists.Add(new SoloArtist {
+                Name = "Solo Artist",
+                Instrument = "Guitar"
+            });
 
             context.SaveChanges();
         }
