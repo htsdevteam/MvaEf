@@ -11,5 +11,10 @@ namespace Ch0201MusicStore.Models.Repositories
         {
             return DbSet.Where(a => a.Name.Contains(name)).ToList();
         }
+
+        public List<SoloArtist> GetSoloArtists()
+        {
+            return DbSet.OfType<SoloArtist>().ToList();
+        }
     }
 }

@@ -26,6 +26,7 @@ namespace Ch0201MusicStore.Controllers
         public ActionResult Index()
         {
             return View(_repo.GetAll());
+            //return View(_repo.GetSoloArtists());
         }
 
         public ActionResult Create()
