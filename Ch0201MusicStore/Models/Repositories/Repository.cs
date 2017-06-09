@@ -9,6 +9,7 @@ namespace Ch0201MusicStore.Models.Repositories
     public class Repository<T> where T : class
     {
         private readonly MusicStoreDbContext _context;
+        private bool _isDisposed;
 
         public Repository() : this(new MusicStoreDbContext())
         {
@@ -37,10 +38,30 @@ namespace Ch0201MusicStore.Models.Repositories
             DbSet.Add(entity);
         }
 
+        //public void Update(T entity)
+        // virtual for the self-made concurrency management
+        public virtual void Update(T entity)
+        {
+            _context.Entry(entity).State = EntityState.Modified;
+        }
+
+        public void Delete(int id)
+        {
+            DbSet.Remove(DbSet.Find(id));
+        }
+
         public void SaveChanges()
         {
             _context.SaveChanges();
         }
 
+        public void Dispose()
+        {
+            if (!_isDisposed)
+            {
+                _context.Dispose();
+                _isDisposed = true;
+            }
+        }
     }
 }

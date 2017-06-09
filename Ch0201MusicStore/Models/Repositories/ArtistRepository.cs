@@ -16,5 +16,15 @@ namespace Ch0201MusicStore.Models.Repositories
         {
             return DbSet.OfType<SoloArtist>().ToList();
         }
+
+        // for the self-made implementation of concurrency
+        public override void Update(Artist entity)
+        {
+            base.Update(entity);
+            SaveChanges();
+            ++entity.Version;
+            base.Update(entity);
+            SaveChanges();
+        }
     }
 }

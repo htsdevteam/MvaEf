@@ -10,5 +10,7 @@ namespace Ch0201MusicStore.Models
     {
         public DbSet<Artist> Artists { get; set; }
         public DbSet<Album> Albums { get; set; }
+
+        public System.Data.Entity.DbSet<Ch0201MusicStore.Models.ArtistDetails> ArtistDetails { get; set; }
     }
 }

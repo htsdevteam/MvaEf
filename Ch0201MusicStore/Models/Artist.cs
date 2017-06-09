@@ -19,5 +19,12 @@ namespace Ch0201MusicStore.Models
         public virtual List<Album> Albums { get; set; }
 
         public virtual ArtistDetails ArtistDetails { get; set; }
+
+        //[Timestamp]
+        //public byte[] RowVersion { get; set; }
+
+        // self-made implementation of concurrency
+        [ConcurrencyCheck]
+        public int Version { get; set; }
     }
 }
